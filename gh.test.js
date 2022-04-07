@@ -6,17 +6,15 @@ describe("Github page tests", () => {
     await page.goto("https://github.com/team");
   });
 
+  test("The h1 header content'", async () => {
+    const firstLink = await page.$("header div div a");
+    await firstLink.click();
+    await page.waitForSelector("h1", { timeout: 60000 });
+    const title2 = await page.title();
+    expect(title2).toEqual("GitHub: Where the world builds software · GitHub");
+  });
   afterEach(() => {
     page.close();
-    test("The h1 header content'", async () => {
-      const firstLink = await page.$("header div div a");
-      await firstLink.click();
-      await page.waitForSelector("h1", { timeout: 60000 });
-      const title2 = await page.title();
-      expect(title2).toEqual(
-        "GitHub: Where the world builds software · GitHub"
-      );
-    });
 
     test("The first link attribute", async () => {
       await page.waitForSelector("a", { timeout: 60000 });

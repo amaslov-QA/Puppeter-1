@@ -33,15 +33,6 @@ describe("Github page tests", () => {
     });
   });
 });
-beforeEach(async () => {
-  page = await browser.newPage();
-  await page.goto("https://github.com");
-});
-
-afterEach(() => {
-  page.close();
-});
-
 test("The h1 should contain 'enterprise'", async () => {
   const enterpriseLink = await page.$("header nav > ul > li:nth-child(3) > a");
   await enterpriseLink.click();
